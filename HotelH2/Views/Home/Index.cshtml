@@ -1,8 +1,60 @@
-﻿@{
+﻿@using HotelH2.Controllers;
+﻿@using HotelH2.Models;
+@{
     ViewData["Title"] = "Home Page";
 }
+@model List<Room>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<style>
+    table.center {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
+
+<div class="text-center" margin:0 auto;>
+    <h1 class="display-4">Welcome to Hotel</h1>
+
+    <form method="post" action="test">
+        <button type="submit">submitform</button>
+    </form>
+
+    <table id="roomTable" class="center" style="width:70%">
+        <tr>
+            <th>Number</th>
+            <th>Type</th>
+            <th>Price</th>
+        </tr>
+        
+        <tbody>
+
+            @foreach(Room room in Model)
+            {
+                <tr>
+                    <td>@room.id</td>
+                    <td>@room.roomType</td>
+                    <td>@room.price</td>
+                    <td>
+                        <button type="button" class="btn btn-success">Book</button>
+                    </td>
+                    @*
+                        <td type="button" class="btn btn-primary">Primary</td>
+                        <td type="button" class="btn btn-success">Success</td>
+                        <td type="button" class="btn btn-danger">Danger</td>
+                    *@
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>
+
+<form method="post" action="Home/OnPostA">
+    <input type="hidden" name="id" value="2">
+    <button type="submit" class="btn btn-primary">Se Mere</button>
+</form>
+
+    

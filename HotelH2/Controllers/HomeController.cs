@@ -1,4 +1,5 @@
-﻿using HotelH2.Models;
+﻿using HotelH2.DataAccessLayer;
+using HotelH2.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -6,26 +7,32 @@ namespace HotelH2.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
-
         public IActionResult Index()
         {
-            return View();
+            RoomsDB roomsDB = new();
+            List<Room> rooms = roomsDB.getRooms();
+            rooms.Sort((a, b) => a.price.CompareTo(b.price));
+
+            return View(rooms);
         }
 
-        public IActionResult Privacy()
+        public IActionResult OnPostA()
         {
-            return View();
+            String id = Request.Form["id"];
+            Console.WriteLine("amkmono");
+            return RedirectToAction("Privacy");
+        }
+
+        public IActionResult test()
+        {
+            Console.WriteLine("hello");
+
+            return RedirectToAction("Index");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
-        {
+        { 
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
