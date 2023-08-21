@@ -5,56 +5,88 @@
 }
 @model List<Room>
 
-<style>
-    table.center {
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    tr:nth-child(even) {
-        background-color: #dddddd;
-    }
-</style>
-
 <div class="text-center" margin:0 auto;>
     <h1 class="display-4">Welcome to Hotel</h1>
 
-    <form method="post" action="test">
-        <button type="submit">submitform</button>
-    </form>
-
-    <table id="roomTable" class="center" style="width:70%">
+    <table id="roomTable" class="center table" style="width:60%">
         <tr>
             <th>Number</th>
             <th>Type</th>
             <th>Price</th>
+            <th>Action</th>
         </tr>
         
         <tbody>
-
             @foreach(Room room in Model)
             {
                 <tr>
-                    <td>@room.id</td>
+                    <td>@room.roomNum</td>
                     <td>@room.roomType</td>
                     <td>@room.price</td>
                     <td>
-                        <button type="button" class="btn btn-success">Book</button>
+                        <div style="display: inline-flex">
+                            <form method="post" action="Booking/Details">
+                                <input type="hidden" name="id" value="@room.id">
+                                <button type="submit" class="btn btn-primary" style="margin-right: 10px">Se Mere</button>
+                            </form>
+                            <button type="submit" class="btn btn-success" onclick="document.getElementById('id02').style.display='block'">Book</button>
+                        </div>
                     </td>
-                    @*
-                        <td type="button" class="btn btn-primary">Primary</td>
-                        <td type="button" class="btn btn-success">Success</td>
-                        <td type="button" class="btn btn-danger">Danger</td>
-                    *@
                 </tr>
             }
         </tbody>
     </table>
 </div>
 
-<form method="post" action="Home/OnPostA">
-    <input type="hidden" name="id" value="2">
-    <button type="submit" class="btn btn-primary">Se Mere</button>
-</form>
 
-    
+<script>
+    var modal = document.getElementById('id02');
+
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
+
+
+<div id="id02" class="modal">
+
+    <form method="post" action="Home/Login" class="modal-content">
+        <div style="position: relative">
+            <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+        </div>
+
+        <div class="container">
+            <label>Type</label>
+            <header>
+                <nav class="pcheader">
+                    <div id="dropdown-container">
+                        <div class="dropdown">
+                            @*TODO: flyt js*@
+                            <button onclick="var element = document.getElementById('dropdownItems'); element.style.display == 'none' ? element.style.display='block' : element.style.display='none';" class="btn btn-success" type="button">Select Room Type</button>
+
+                            <div class="dropdown-content" id="dropdownItems">
+                                <a>Deluxe</a>
+                                <a>Premium</a>
+                                <a>Standard</a>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </header>
+
+            <label>Price Per Night: 0</label><br/>
+
+            <label>Start Date:</label><br/>
+            <input type="date" name="startDate" required><br/>
+
+            <label>End Date:</label><br/>
+            <input type="date" name="endDate" required><br/>
+            
+            <label>Total Price: 0</label> <br/>
+
+            <button type="submit" class="btn btn-success">Login</button>
+        </div>
+    </form>
+</div>

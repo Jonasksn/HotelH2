@@ -23,10 +23,7 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Booking" asp-action="Booking">Booking</a>
+                            <a class="nav-link text-dark" style="cursor: pointer" onclick="document.getElementById('id01').style.display='block'">Login</a>
                         </li>
                     </ul>
                 </div>
@@ -41,7 +38,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2023 - HotelH2 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2023 - HotelH2
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -50,3 +47,36 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+
+<div id="id01" class="modal">
+
+    <form method="post" action="Home/Login" class="modal-content">
+        <div style="position: relative">
+            <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+        </div>
+
+        <div class="container">
+            <label>Username</label>
+            <input type="text" placeholder="Enter Username" name="user" required>
+
+            <label>Password</label>
+            <input type="password" placeholder="Enter Password" name="pass" required>
+
+            <button type="submit" class="btn btn-success">Login</button>
+            <br />
+            <label>
+                <input type="checkbox" checked="checked" name="remember"> Remember me
+            </label>
+        </div>
+    </form>
+</div>
+
+<script>
+    var modal = document.getElementById('id01');
+
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>

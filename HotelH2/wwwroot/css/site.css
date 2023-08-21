@@ -16,3 +16,93 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+table.center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.th {
+    width: 25%
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.container {
+    padding: 16px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto 15% auto;
+    border: 1px solid #888;
+    width: 30%;
+}
+
+.close {
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: grey;
+    cursor: pointer;
+}
+
+
+
+
+
+.dropdown{
+    display: inline-block;
+}
+
+.dropdown-content{
+    display: none;
+    position: absolute;
+    
+    box-shadow: 0 0 27px 0 rgba(0,0,0,0.38);
+    background-color: #FFFFFFFF;
+    border-radius: 5px;
+    text-align: left
+
+}
+
+.dropdown-content a{
+    display: block;
+    margin: 20px 10px 20px 10px;
+    line-height: 1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+    z-index: 2;
+}

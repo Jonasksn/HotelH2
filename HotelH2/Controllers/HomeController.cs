@@ -11,21 +11,17 @@ namespace HotelH2.Controllers
         {
             RoomsDB roomsDB = new();
             List<Room> rooms = roomsDB.getRooms();
-            rooms.Sort((a, b) => a.price.CompareTo(b.price));
+            rooms.Sort((a, b) => a.roomNum.CompareTo(b.roomNum));
 
             return View(rooms);
         }
-
-        public IActionResult OnPostA()
+        public IActionResult Login()
         {
-            String id = Request.Form["id"];
-            Console.WriteLine("amkmono");
-            return RedirectToAction("Privacy");
-        }
+            String user = Request.Form["user"]!;
+            String pass = Request.Form["pass"]!;
+            bool remember = Request.Form["remember"].ToString() == "on" ? true : false;
 
-        public IActionResult test()
-        {
-            Console.WriteLine("hello");
+            /*TODO: login */
 
             return RedirectToAction("Index");
         }
